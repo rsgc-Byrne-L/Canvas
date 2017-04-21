@@ -29,20 +29,42 @@ canvas.drawAxes()
 // Add code below...
 let axiom = "F++F++F"
 let rule = "F-F++F-F"
-let word = "F-F++F-F++F-F++F-F++F-F++F-F++F-F"
-canvas.translate(byX: 0, byY: 100)
+var word = axiom
+var lineLength = 300
+
+var n = 2
+
+if n > 0 {
+    for generation in 1...n {
+        var newWord = ""
+        
+        for character in word.characters {
+            if character == "F" {
+                newWord.append(rule)
+            } else {
+                newWord.append(character)
+            }
+        }
+        
+        word = newWord
+        lineLength = lineLength/3
+    }
+}
+
+let angle = 60
+canvas.translate(byX: 100, byY: 100)
 canvas.saveState()
 
 for char in word.characters {
     if char == "F" {
-        canvas.drawLine(fromX: 0, fromY: 0, toX: 100, toY: 0)
-        canvas.translate(byX: 100, byY: 0)
+        canvas.drawLine(fromX: 0, fromY: 0, toX: lineLength, toY: 0)
+        canvas.translate(byX: lineLength, byY: 0)
     }
-    if char == "+" {
-        canvas.rotate(by: 60)
+    else if char == "+" {
+        canvas.rotate(by: Degrees(angle))
     }
-    if char == "-" {
-        canvas.rotate(by: -60)
+    else if char == "-" {
+        canvas.rotate(by: -(Degrees)(angle))
     }
 }
 
