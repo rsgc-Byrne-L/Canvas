@@ -26,14 +26,16 @@ canvas
 // Draw the axes
 canvas.drawAxes()
 
+
 // Add code below...
 let axiom = "F++F++F"
 let rule = "F-F++F-F"
 var word = axiom
 var lineLength = 300
+let angle = 60
+var n = 3
 
-var n = 2
-
+LindenmayerSystem.init(axiom: "F++F++F", rule: "F-F++F-F", lineLength: 300, n: 3, angle: 60, x: 100, y: 100)
 if n > 0 {
     for generation in 1...n {
         var newWord = ""
@@ -50,8 +52,6 @@ if n > 0 {
         lineLength = lineLength/3
     }
 }
-
-let angle = 60
 canvas.translate(byX: 100, byY: 100)
 canvas.saveState()
 
